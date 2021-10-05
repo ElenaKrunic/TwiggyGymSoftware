@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-10-05T10:19:51.883Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 YaBrowser/21.9.0.1044 Yowser/2.5 Safari/537.36" etag="V67s9X50oJfoq-Mm_7dh" version="15.4.1" type="github">
+<mxfile host="app.diagrams.net" modified="2021-10-05T10:57:27.218Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 YaBrowser/21.9.0.1044 Yowser/2.5 Safari/537.36" etag="M2MUBwGGegCRxjJeODnJ" version="15.4.1" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="2201" dy="799" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -97,8 +97,8 @@
             <mxPoint x="400" y="730" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="3qgxAPTl3NbaDaiG6Lva-19" value="client has a list of training sessions" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="280" y="694" width="200" height="20" as="geometry" />
+        <mxCell id="3qgxAPTl3NbaDaiG6Lva-19" value="client has a training" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="320" y="694" width="120" height="20" as="geometry" />
         </mxCell>
         <mxCell id="3qgxAPTl3NbaDaiG6Lva-20" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="3qgxAPTl3NbaDaiG6Lva-11" target="3qgxAPTl3NbaDaiG6Lva-7">
           <mxGeometry width="160" relative="1" as="geometry">
