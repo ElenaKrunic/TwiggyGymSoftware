@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-10-05T10:13:27.139Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 YaBrowser/21.9.0.1044 Yowser/2.5 Safari/537.36" etag="NBtjbTE8pJbX189I86Dt" version="15.4.1" type="github">
+<mxfile host="app.diagrams.net" modified="2021-10-05T10:19:51.883Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 YaBrowser/21.9.0.1044 Yowser/2.5 Safari/537.36" etag="V67s9X50oJfoq-Mm_7dh" version="15.4.1" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="2201" dy="799" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -105,9 +105,7 @@
             <mxPoint x="270" y="250" as="sourcePoint" />
             <mxPoint x="430" y="250" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="580" y="120" />
-              <mxPoint x="300" y="120" />
-              <mxPoint x="300" y="126" />
+              <mxPoint x="580" y="126" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -150,6 +148,49 @@
         </mxCell>
         <mxCell id="3qgxAPTl3NbaDaiG6Lva-31" value="training has a type&lt;br&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="725" y="150" width="110" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="3qgxAPTl3NbaDaiG6Lva-32" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="zkfFHV4jXpPFQw0GAbJ--6">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="-80" y="860" as="sourcePoint" />
+            <mxPoint x="180" y="750" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-80" y="828" />
+              <mxPoint x="110" y="828" />
+              <mxPoint x="110" y="800" />
+              <mxPoint x="180" y="800" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3qgxAPTl3NbaDaiG6Lva-33" value="coach has a list of clients&lt;br&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-10" y="830" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="3qgxAPTl3NbaDaiG6Lva-35" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;entryX=0.25;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="zkfFHV4jXpPFQw0GAbJ--6" target="3qgxAPTl3NbaDaiG6Lva-11">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="-80" y="890" as="sourcePoint" />
+            <mxPoint x="600" y="206" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="40" y="810" />
+              <mxPoint x="615" y="810" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3qgxAPTl3NbaDaiG6Lva-36" value="coach has a list of training sessions" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="320" y="790" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="3qgxAPTl3NbaDaiG6Lva-37" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="zkfFHV4jXpPFQw0GAbJ--6">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="-340" y="780" as="sourcePoint" />
+            <mxPoint x="-200" y="316" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-490" y="784" />
+              <mxPoint x="-490" y="260" />
+              <mxPoint x="-230" y="260" />
+              <mxPoint x="-230" y="316" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3qgxAPTl3NbaDaiG6Lva-38" value="coach has a list of reservations" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-550" y="760" width="180" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
