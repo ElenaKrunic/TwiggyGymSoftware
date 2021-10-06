@@ -41,6 +41,9 @@ public class Training implements Serializable {
 	@Column(name="duration", nullable=false)
 	private Date duration;
 	
+	@Column(name="reserved", nullable=false)
+	private boolean reserved=true;
+	
 	@ManyToOne
 	@JoinColumn(name="coach")
 	private User coach;
