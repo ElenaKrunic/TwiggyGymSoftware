@@ -15,8 +15,10 @@ public class TrainingDTO {
 
 	private Long id; 
 	private String name; 
-	private Date duration; 
+	private String duration; 
 	private boolean reserved; 
-	private UserDTO user; 
+	//private UserDTO user; 
+	private Long coachID;
+	private Long clientID;
 	
 }

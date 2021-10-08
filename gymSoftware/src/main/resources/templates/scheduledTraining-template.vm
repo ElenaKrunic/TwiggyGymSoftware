@@ -1,0 +1,32 @@
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<div
+        class="bordered"
+        style=" width: 350px;
+            height: 370px;
+            padding: 30px;
+            border: 1px solid #91917f;
+            border-radius: 8px;
+            color: black;"
+>
+    <div align="center">
+    </div>
+    <br />
+    <br />
+    <div style="color: #5F5F5F" >
+    	<p align="center"> Training is scheduled! </p>
+    	<p> You will be doing: ${name} </p>
+    	<p> at ${duration}  </p>
+    	<p> with ${coach}. </p>
+    	<p> Stay safe! </p>
+    	<p></p>
+    </div>
+    <br />
+</div>
+</body>
+</html>

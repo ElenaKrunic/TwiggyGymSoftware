@@ -10,3 +10,5 @@ insert into role_has_user (user_id, role_id) values (1, 1)
 insert into role_has_user (user_id, role_id) values (1, 2)
 insert into role_has_user (user_id, role_id) values (1, 3)
 
+insert into training (id, name, duration, reserved, client, coach ) values (1, "Funkcionalni trening", "2021-09-07", true, 1, 1)
+
