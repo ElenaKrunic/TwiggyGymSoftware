@@ -8,4 +8,6 @@ import elena.krunic.twiggy.gymSoftware.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
 
+	User findByEmail(String name);
+
 }

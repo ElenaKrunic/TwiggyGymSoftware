@@ -1,7 +1,9 @@
 package elena.krunic.twiggy.gymSoftware.service.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +82,59 @@ public class TrainingServiceImpl implements TrainingService {
 		emailService.scheduleTraining(training.getDuration().toString(), training.getCoach().getFirstname() , training.getName(), user.getEmail());
 		
 		return "Pogledaj mejl";
+	}
+
+	@Override
+	public List<TrainingDTO> getTrainingsForCoach(String name) throws Exception {
+		User user = userRepository.findByEmail(name); 
+		
+		if(user == null) {
+			throw new Exception("User does not exits"); 
+		}
+		
+		List<TrainingDTO> response = new ArrayList<>();
+		List<Training> trainings = trainingRepository.findAllByCoach(user);
+		
+		for(Training training : trainings) {
+			TrainingDTO tmp = new TrainingDTO(); 
+			tmp.setId(training.getId());
+			tmp.setClientID(training.getClient().getId());
+			tmp.setCoachID(training.getCoach().getId());
+			tmp.setDuration(training.getDuration().toString());
+			tmp.setName(training.getName());
+			tmp.setReserved(training.isReserved());
+			
+			response.add(tmp);
+		}
+		
+		return response; 
+		
+	}
+
+	@Override
+	public List<TrainingDTO> getTrainingsForClient(String name) throws Exception {
+		User user = userRepository.findByEmail(name); 
+		
+		if(user == null) {
+			throw new Exception("User does not exits"); 
+		}
+		
+		List<TrainingDTO> response = new ArrayList<>();
+		List<Training> trainings = trainingRepository.findAllByCoach(user);
+		
+		for(Training training : trainings) {
+			TrainingDTO tmp = new TrainingDTO(); 
+			tmp.setId(training.getId());
+			tmp.setClientID(training.getClient().getId());
+			tmp.setCoachID(training.getCoach().getId());
+			tmp.setDuration(training.getDuration().toString());
+			tmp.setName(training.getName());
+			tmp.setReserved(training.isReserved());
+			
+			response.add(tmp);
+		}
+		
+		return response; 
 	}
 
 }

@@ -44,6 +44,9 @@ public class Training implements Serializable {
 	@Column(name="reserved", nullable=false)
 	private boolean reserved=true;
 	
+	@Column(name="price", nullable=false)
+	private double price; 
+	
 	@ManyToOne
 	@JoinColumn(name="coach")
 	private User coach;
