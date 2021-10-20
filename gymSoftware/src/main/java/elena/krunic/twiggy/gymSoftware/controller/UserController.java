@@ -1,5 +1,6 @@
 package elena.krunic.twiggy.gymSoftware.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -7,13 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,6 +52,11 @@ public class UserController {
 	@Autowired
 	TokenUtils tokenUtils; 
 	
+	@GetMapping("/all")
+	public ResponseEntity<List<User>> getAllUsers() {
+		List<User> users = userRepository.findAll();
+		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+	}
 	
 	@PostMapping("/login")
 	public ResponseEntity<UserTokenStateDTO> login(@RequestBody JwtAuthenticationRequestDTO request, HttpServletResponse response) {
@@ -99,24 +109,94 @@ public class UserController {
 			return new ResponseEntity<>(new StringDTO(e.getMessage()), HttpStatus.BAD_REQUEST);
 		}
 	}
-
-
-	
-	//get all users 
-	@GetMapping("/all")
-	public ResponseEntity<List<User>> getAllUsers() {
-		List<User> users = userRepository.findAll();
-		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+	 
+	@PutMapping("/editCoach")
+    @PreAuthorize("hasAuthority('COACH') || hasAuthority('ADMIN')")
+	public ResponseEntity<?> editCoach(@RequestBody UserDTO userDTO, Principal principal) {
+		try {
+			String message = userService.editProfile(userDTO, principal.getName()); 
+			return new ResponseEntity<>(new StringDTO(message), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(new StringDTO(e.getMessage()), HttpStatus.BAD_REQUEST);
+		}
 	}
 	
-	//get all client users for coach -> role client 
+	@PutMapping("/editClient")
+    @PreAuthorize("hasAuthority('COACH') || hasAuthority('ADMIN') || hasAuthority('CLIENT')")
+	public ResponseEntity<?> editClient(@RequestBody UserDTO userDTO, Principal principal) {
+		try {
+			String message = userService.editProfile(userDTO, principal.getName()); 
+			return new ResponseEntity<>(new StringDTO(message), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(new StringDTO(e.getMessage()), HttpStatus.BAD_REQUEST);
+		}
+	}
 	
-	//create user 
+	@PutMapping("/editAdmin")
+    @PreAuthorize("hasAuthority('ADMIN')")
+	public ResponseEntity<?> editAdmin(@RequestBody UserDTO userDTO, Principal principal) {
+		try {
+			String message = userService.editProfile(userDTO, principal.getName()); 
+			return new ResponseEntity<>(new StringDTO(message), HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(new StringDTO(e.getMessage()), HttpStatus.BAD_REQUEST);
+		}
+	}
 	
-	//update user 
+	@GetMapping("/my-profile")
+	public ResponseEntity<?> getMyProfile(Principal principal) {
+		try {
+			UserDTO user = userService.myProfile(principal.getName()); 
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		} catch(Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST); 
+		}
+	}
 	
-	//change password 
+	//delete coach 
+	@DeleteMapping(value="/deleteCoach/{id}")
+	public ResponseEntity<Void> deleteCoach(@PathVariable("id") Long id) {
+		User user = userRepository.getById(id);
+		
+		if(user != null) {
+			userRepository.delete(user);
+			return new ResponseEntity<Void>(HttpStatus.OK); 
+		}
+		
+		return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+		
+	}
 	
-	//delete user 
+	//delete client 
+	@DeleteMapping(value="/deleteClient/{id}")
+	public ResponseEntity<Void> deleteClient(@PathVariable("id") Long id) {
+		User user = userRepository.getById(id);
+		
+		if(user != null) {
+			userRepository.delete(user);
+			return new ResponseEntity<Void>(HttpStatus.OK); 
+		}
+		
+		return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+		
+	}
+	
+	//delete admin 
+	@DeleteMapping(value="/deleteAdmin/{id}")
+	public ResponseEntity<Void> deleteAdmin(@PathVariable("id") Long id) {
+		User user = userRepository.getById(id);
+		
+		if(user != null) {
+			userRepository.delete(user);
+			return new ResponseEntity<Void>(HttpStatus.OK); 
+		}
+		
+		return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+		
+	}
+	 
 	
 }

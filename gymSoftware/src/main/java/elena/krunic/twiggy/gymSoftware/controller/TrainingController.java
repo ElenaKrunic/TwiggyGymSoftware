@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,22 +49,7 @@ public class TrainingController {
 	@Autowired 
 	UserRepository userRepository; 
 	
-	//client does 
-	//client reserve training and gets an email about training reservation - client 
-	@PostMapping(consumes="application/json", value="/scheduleTraining/{id}")
-	public ResponseEntity<?> doTraining(@PathVariable("id") Long id, Principal principal) {
-		try {
-			String mess = trainingService.doTraining(id, "lelekrunic1@gmail.com"); 
-			return new ResponseEntity<>(new StringDTO(mess), HttpStatus.OK); 
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-	}
 
-	//all 
-	//get one 
 	@GetMapping(value="/{id}")
 	public ResponseEntity<TrainingDTO> getOne(@PathVariable("id") Long id) {
 		Training training = trainingRepository.getById(id); 
@@ -73,11 +59,8 @@ public class TrainingController {
 		}
 		
 		return new ResponseEntity<TrainingDTO>(new TrainingDTO(training), HttpStatus.OK);
-		
-		
 	}
 	
-	//all 
 	@GetMapping(value="/all")
 	public ResponseEntity<List<TrainingDTO>> getAll() {
 		List<Training> trainings = trainingRepository.findAll(); 
@@ -90,8 +73,8 @@ public class TrainingController {
 		return new ResponseEntity<List<TrainingDTO>>(dtos, HttpStatus.OK);
 	}
 	
-	//get trainings for coach - coach  
 	@GetMapping("/trainingsForCoach")
+    @PreAuthorize("hasAuthority('COACH')")
 	public ResponseEntity<?> trainingsForCoach(Principal principal) {
 		try {
 			//coach je krunicele@gmail.com 
@@ -104,8 +87,8 @@ public class TrainingController {
 		}
 	}
 	
-	//get trainings for client - client 
 	@GetMapping("/trainingsForClient")
+    @PreAuthorize("hasAuthority('CLIENT')")
 	public ResponseEntity<?> trainingsForClient(Principal principal) {
 		try {
 			//List<TrainingDTO> dtos = trainingService.getTrainingsForClient(principal.getName()); 
@@ -117,8 +100,8 @@ public class TrainingController {
 		}
 	}
 	
-	//get price for client for one training - client
 	@GetMapping("/priceForTraining/{id}")
+    @PreAuthorize("hasAuthority('COACH') || hasAuthority('CLIENT') || hasAuthority('ADMIN')")
 	public ResponseEntity<?> getPriceForTraining(@PathVariable("id") Long id) {
 		try {
 			Training training = trainingRepository.getById(id); 
@@ -136,8 +119,23 @@ public class TrainingController {
 		}
 	}
 	
-	//create training  - admin/coach
+	//client reserve training and gets an email about training reservation - client 
+	@PostMapping(consumes="application/json", value="/scheduleTraining/{id}")
+    @PreAuthorize("hasAuthority('CLIENT')")
+	public ResponseEntity<?> doTraining(@PathVariable("id") Long id, Principal principal) {
+		try {
+			String mess = trainingService.doTraining(id, "lelekrunic1@gmail.com"); 
+			return new ResponseEntity<>(new StringDTO(mess), HttpStatus.OK); 
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	
 	@PostMapping(consumes="application/json")
+    @PreAuthorize("hasAuthority('COACH') || hasAuthority('ADMIN')")
 	public ResponseEntity<TrainingDTO> saveTraining(@RequestBody TrainingDTO dto, Principal principal) throws Exception {
 		
 		//User user = userRepository.findByEmail(principal.getName()); 
@@ -165,8 +163,8 @@ public class TrainingController {
 		
 	}
 	
-	//update training - admin/coach 
 	@PutMapping(consumes="application/json")
+    @PreAuthorize("hasAuthority('COACH') || hasAuthority('ADMIN')")
 	public ResponseEntity<TrainingDTO> editTraining(@RequestBody TrainingDTO dto, Principal principal) throws Exception {
 		
 		//User user = userRepository.findByEmail(principal.getName()); 
@@ -195,8 +193,8 @@ public class TrainingController {
 	}
 	
 	
-	//delete training - admin 
 	@DeleteMapping(value="/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<Void> deleteTraining(@PathVariable("id") Long id) {
 		Training training = trainingRepository.getById(id); 
 		
