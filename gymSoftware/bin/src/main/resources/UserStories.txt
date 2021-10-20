@@ -1,0 +1,12 @@
+		====KLIJENT====
+1. Ja kao klijent zelim da rezervisem trening
+2. Ja kao klijent zelim da pogledam raspored treninga 
+3. Ja kao klijent zelim da vidim cjenovnik treninga 
+
+		====TRENER====
+1. Ja kao trener zelim da vidim listu treninga 
+2. Ja kao trener zelim da vidim listu klijenata 
+3. Ja kao trener zelim da vidim listu rezervacija 
+
+		====ADMIN====
+1. Ja kao admin zelim da uradim CRUD funkcionalnosti nad korisnicima/treninzima/rezervacijama/cjenovnicima

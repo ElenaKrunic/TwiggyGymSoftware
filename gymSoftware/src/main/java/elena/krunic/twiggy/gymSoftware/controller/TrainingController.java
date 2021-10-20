@@ -49,7 +49,7 @@ public class TrainingController {
 	UserRepository userRepository; 
 	
 	//client does 
-	//client reserve training and gets an email about training reservation 
+	//client reserve training and gets an email about training reservation - client 
 	@PostMapping(consumes="application/json", value="/scheduleTraining/{id}")
 	public ResponseEntity<?> doTraining(@PathVariable("id") Long id, Principal principal) {
 		try {
@@ -90,8 +90,7 @@ public class TrainingController {
 		return new ResponseEntity<List<TrainingDTO>>(dtos, HttpStatus.OK);
 	}
 	
-	//coach does 
-	//get trainings for coach 
+	//get trainings for coach - coach  
 	@GetMapping("/trainingsForCoach")
 	public ResponseEntity<?> trainingsForCoach(Principal principal) {
 		try {
@@ -105,8 +104,7 @@ public class TrainingController {
 		}
 	}
 	
-	//client does 
-	//get trainings for client 
+	//get trainings for client - client 
 	@GetMapping("/trainingsForClient")
 	public ResponseEntity<?> trainingsForClient(Principal principal) {
 		try {
@@ -119,7 +117,7 @@ public class TrainingController {
 		}
 	}
 	
-	//get price for client for one training 
+	//get price for client for one training - client
 	@GetMapping("/priceForTraining/{id}")
 	public ResponseEntity<?> getPriceForTraining(@PathVariable("id") Long id) {
 		try {
